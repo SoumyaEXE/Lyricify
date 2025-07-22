@@ -1,0 +1,291 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+
+    --background-color: rgba(246, 246, 246, 1);
+    --background-text-color: rgba(18, 55, 64, 1);
+    --surface-light-color: rgba(84, 154, 171, 0.1);
+    --surface-color: rgba(84, 154, 171, 0.3);
+    --surface-text-color: rgba(18, 55, 64, 0.85);
+    --primary-color: rgba(29, 185, 84, 1);
+    --primary-text-color: rgba(246, 246, 246, 1);
+    --error-color: rgba(240, 40, 30, 0.3);
+    --error-text-color: rgba(240, 40, 30, 1);
+
+    --cubic-ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.dark-mode, .dark-mode * {
+    --background-color: rgba(20, 20, 20, 1);
+    --background-text-color: rgba(29, 185, 84, 1);
+    --surface-light-color: rgba(84, 154, 171, 0.1);
+    --surface-color: rgba(84, 154, 171, 0.25);
+    --surface-text-color: rgba(29, 185, 84, 1);
+    --primary-color: rgba(29, 185, 84, 1);
+    --primary-text-color: rgba(246, 246, 246, 1);
+    --error-color: rgba(240, 40, 30, 0.2);
+    --error-text-color: rgba(240, 40, 30, 1);
+}
+
+[contenteditable] {
+    outline: none;
+}
+
+.cloneable {
+    display: none!important;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    background: var(--background-color);
+    color: var(--background-text-color);
+}
+
+h1, h2 {
+    margin: 0;
+    padding: 1.5rem 0 1.1rem;
+    font-size: 1.6rem;
+}
+
+.surface {
+    background: var(--surface-color);
+    color: var(--surface-text-color);
+}
+
+.primary {
+    background: var(--primary-color);
+    color: var(--primary-text-color);
+}
+
+a {
+    text-decoration: none;
+    font-weight: 600;
+    color: inherit
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+header {
+    position: relative;
+}
+
+header > .go-to-screen, #download, #last-go-back {
+    position: absolute;
+    top: calc(50% + 0.2rem);
+    left: -1rem;
+    transform: translate(-100%, -50%);
+    border: 0;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    background-color: var(--surface-light-color);
+    color: var(--surface-text-color);
+    transition: 150ms var(--cubic-ease-out);
+}
+
+header > .go-to-screen.right, #download {
+    right: -1rem;
+    left: auto;
+    transform: translate(100%, -50%);
+}
+
+header > .go-to-screen:hover, #download:hover, #last-go-back:hover {
+    cursor: pointer;
+    background-color: var(--surface-color);
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    padding: 1.5rem 1rem;
+    min-height: 6rem;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+footer > div:first-child {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 500;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+}
+
+footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.3rem;
+    transition: all 0.2s ease;
+}
+
+footer a:hover {
+    color: white;
+    background: var(--primary-color);
+}
+
+#dark-mode-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 1.5rem;
+    background: var(--surface-color);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
+}
+
+#dark-mode-toggle:hover {
+    cursor: pointer;
+    background: var(--surface-light-color);
+    transform: translateY(-1px);
+}
+
+#dark-mode-toggle .material-symbols-outlined {
+    font-size: 1rem;
+}
+
+#dark-mode-toggle::before {
+    content: "Switch to dark";
+}
+
+.dark-mode #dark-mode-toggle::before {
+    content: "Switch to light";
+}
+
+#dark-mode-toggle > span::after {
+    content: "dark_mode";
+}
+
+.dark-mode #dark-mode-toggle > span::after {
+    content: "light_mode";
+}
+
+@media screen and (max-width: 768px) {
+    footer {
+        font-size: 0.85rem;
+        padding: 1.2rem 0.8rem;
+        gap: 0.7rem;
+    }
+    
+    footer > div:first-child {
+        gap: 0.5rem;
+    }
+    
+    #dark-mode-toggle {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.7rem;
+    }
+    
+    #dark-mode-toggle .material-symbols-outlined {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    footer {
+        font-size: 0.8rem;
+        padding: 1rem 0.5rem;
+        min-height: 5rem;
+        gap: 0.6rem;
+    }
+    
+    footer > div:first-child {
+        gap: 0.3rem;
+        text-align: center;
+        white-space: nowrap;
+    }
+    
+    #dark-mode-toggle {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.75rem;
+    }
+    
+    footer a {
+        padding: 0.15rem 0.3rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Control Sliders Styles */
+.controls-section {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: var(--surface-light-color);
+    border-radius: 0.8rem;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.control-group:last-child {
+    margin-bottom: 0;
+}
+
+.control-group label {
+    min-width: 70px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.control-group input[type="range"] {
+    flex: 1;
+    height: 6px;
+    background: var(--surface-color);
+    border-radius: 3px;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.control-group input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.control-group input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+.control-group span {
+    min-width: 50px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: right;
+}

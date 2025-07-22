@@ -1,0 +1,80 @@
+.song-image {
+    display: flex;
+    flex-direction: column;
+    padding: 1.2rem 1rem 1rem;
+    max-width: 20rem;
+    width: 95%;
+    background-color: rgba(84, 154, 171, 1);
+    color: rgba(0, 0, 0, 0.95);
+    border-radius: 1.5rem;
+    transition: all 200ms var(--cubic-ease-out);
+}
+
+.light-text .song-image {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.song-image > .header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 1.5rem;
+}
+
+.song-image > .header > img {
+    height: 2.4rem;
+    width: 2.4rem;
+    aspect-ratio: 1;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    transition: all 200ms var(--cubic-ease-out);
+}
+
+.song-image > .header .name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.2rem;
+    padding-bottom: 0.1rem;
+    transition: all 200ms var(--cubic-ease-out);
+}
+
+.song-image > .header .authors {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.6);
+    transition: all 200ms var(--cubic-ease-out);
+}
+
+.light-text .song-image > .header .authors {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.song-image > .lyrics {
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.5rem;
+    padding-bottom: 0.2rem;
+    transition: all 200ms var(--cubic-ease-out);
+}
+
+.song-image > .spotify {
+    filter: brightness(0) saturate(100%) invert(0%) sepia(5%) saturate(22%) hue-rotate(164deg) brightness(96%) contrast(105%);
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    transition: 200ms var(--cubic-ease-out);
+}
+
+.spotify-tag .song-image > .spotify {
+    height: 3rem;
+    padding: 1.2rem 0 0.3rem;
+}
+
+.song-image > .spotify > img {
+    height: 100%;
+}
+
+.light-text .song-image > .spotify {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+}

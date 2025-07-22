@@ -1,0 +1,617 @@
+@keyframes search-indicator {
+    0% {
+        width: 20%;
+        left: 0%;
+        transform: translate(-200%, 0);
+    }
+
+    33% {
+        width: 50%;
+        left: 20%;
+        transform: translate(0%, 0);
+    }
+
+    66% {
+        width: 40%;
+        left: 60%;
+        transform: translate(0%, 0);
+    }
+
+    100% {
+        width: 10%;
+        left: 100%;
+        transform: translate(100%, 0);
+    }
+}
+
+.searching {
+    padding: 2rem 0 1rem;
+    position: relative;
+    overflow: hidden;
+    transition: 200ms var(--cubic-ease-out);
+}
+
+.searching::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    background-color: var(--background-text-color);
+    height: 0.3rem;
+    opacity: 1;
+    transition: 100ms;
+    animation: search-indicator 1s linear infinite;
+}
+
+.searching.hidden {
+    padding: 0;
+    font-size: 0;
+}
+
+.searching.hidden::after {
+    opacity: 0;
+    height: 0;
+}
+
+.error {
+    background-color: var(--error-color);
+    color: var(--error-text-color);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+    transition: 250ms var(--cubic-ease-out);
+}
+
+.error.hidden {
+    margin-top: 0;
+    padding: 0;
+    font-size: 0;
+    transition: 150ms var(--cubic-ease-out);
+}
+
+/**
+ * Screens
+ */
+.lyrics-image-screen {
+    width: 100%;
+    overflow: hidden;
+    opacity: 1;
+    transition: width 500ms ease-in-out, opacity 300ms ease-in-out 200ms;
+}
+
+.lyrics-image-screen.hidden {
+    opacity: 0;
+    width: 0%;
+    transition: width 500ms ease-in-out, opacity 300ms;
+}
+
+.screen-wrapper {
+    width: 100vw;
+    min-height: calc(100vh - 8rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 500ms ease-in-out;
+}
+
+.hidden.left .screen-wrapper {
+    transform: translate(-100%, 0);
+}
+
+/* Screen 1: Search form */
+.search-form {
+    background: linear-gradient(135deg, rgba(29, 185, 84, 0.08) 0%, rgba(29, 185, 84, 0.03) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.search-form::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(29, 185, 84, 0.1) 0%, transparent 70%);
+    animation: float 20s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-20px) rotate(120deg); }
+    66% { transform: translateY(10px) rotate(240deg); }
+}
+
+.search-form header {
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.search-form header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #45a049 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+    animation: fadeInUp 1s ease-out;
+}
+
+.search-form header .subtitle {
+    font-size: 1.2rem;
+    color: var(--background-text-color);
+    opacity: 0.9;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.search-form header::after {
+    content: "🎵 Create beautiful lyrics cards from your favorite songs 🎵";
+    display: block;
+    font-size: 1rem;
+    color: var(--background-text-color);
+    opacity: 0.7;
+    margin-top: 1rem;
+    animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.search-form form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+.search-form form > input {
+    padding: 1.2rem 1.5rem;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    outline: none;
+    width: 80%;
+    max-width: 28rem;
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.search-form form > input:focus {
+    border-color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 25px rgba(29, 185, 84, 0.15);
+    transform: translateY(-2px);
+}
+
+.search-form form > input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+}
+
+/* Light mode placeholder styling */
+body:not(.dark-mode) .search-form form > input::placeholder {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+body:not(.dark-mode) .search-form form > input {
+    color: #333;
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(29, 185, 84, 0.2);
+}
+
+body:not(.dark-mode) .search-form form > input:focus {
+    border-color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 8px 25px rgba(29, 185, 84, 0.15);
+}
+
+.search-form form > button {
+    text-align: center;
+    padding: 1.2rem 2.5rem;
+    border: none;
+    border-radius: 1rem;
+    outline: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #45a049 100%);
+    color: white;
+    opacity: 1;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 6px 20px rgba(29, 185, 84, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.search-form form > button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.search-form form > button:hover {
+    cursor: pointer;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(29, 185, 84, 0.4);
+    padding: 1.2rem 3.5rem;
+}
+
+.search-form form > button:hover::before {
+    left: 100%;
+}
+
+.search-form form > button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(29, 185, 84, 0.3);
+}
+
+.search-form form > button:disabled {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    color: rgba(255, 255, 255, 0.5);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-size: 0;
+    padding: 0.6rem 1rem;
+    opacity: 0.6;
+}
+
+/* Add some floating elements for visual interest */
+.search-form::after {
+    content: '🎵';
+    position: absolute;
+    top: 15%;
+    right: 10%;
+    font-size: 2rem;
+    opacity: 0.3;
+    animation: float 15s ease-in-out infinite reverse;
+    pointer-events: none;
+}
+
+/* Mobile responsiveness for landing page */
+@media screen and (max-width: 768px) {
+    .search-form header h1 {
+        font-size: 2.2rem;
+    }
+    
+    .search-form header .subtitle {
+        font-size: 1rem;
+    }
+    
+    .search-form header::after {
+        font-size: 0.85rem;
+        padding: 0 1rem;
+    }
+    
+    .search-form form > input {
+        width: 90%;
+        padding: 1rem 1.2rem;
+        font-size: 1rem;
+    }
+    
+    .search-form form > button {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+    
+    .search-form form > button:hover {
+        padding: 1rem 2.5rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .search-form header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .search-form header .subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .search-form header::after {
+        font-size: 0.8rem;
+    }
+    
+    .search-form form {
+        gap: 1.2rem;
+    }
+    
+    .search-form form > input {
+        width: 95%;
+        padding: 0.9rem 1rem;
+    }
+    
+    .search-form form > button {
+        padding: 0.9rem 1.5rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* Screen 2: Song selection */
+.search-results .song-selection {
+    display: flex;
+    justify-content: space-between;
+    row-gap: 2rem;
+    max-width: 50rem;
+    padding: 2rem;
+    flex-wrap: wrap;
+}
+
+.select-song {
+    width: 30%;
+    padding: 1rem;
+    background-color: var(--surface-light-color);
+    border-radius: 0.5rem;
+    transition: scale 200ms var(--cubic-ease-out),
+        background-color 200ms var(--cubic-ease-out);
+}
+
+.select-song:hover {
+    cursor: pointer;
+    background-color: var(--surface-color);
+    scale: 1.05;
+}
+
+.select-song img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    object-position: center 0;
+    opacity: 1;
+    border-radius: 0.5rem;
+    transition: scale 150ms var(--cubic-ease-out),
+        aspect-ratio 400ms var(--cubic-ease-out),
+        opacity 600ms var(--cubic-ease-out);
+}
+
+.select-song:hover img {
+    scale: 1.05;
+}
+
+.hidden .select-song img {
+    aspect-ratio: 10;
+    opacity: 0;
+    transition: aspect-ratio 400ms var(--cubic-ease-out) 100ms,
+        opacity 400ms var(--cubic-ease-out) 100ms;
+}
+
+.select-song .name {
+    font-weight: 700;
+    padding-top: 0.5rem;
+    transition: 300ms var(--cubic-ease-out);
+}
+
+.hidden .select-song .name {
+    font-size: 0;
+    padding-top: 0;
+    transition: 300ms var(--cubic-ease-out) 100ms;
+}
+
+.select-song .authors {
+    font-weight: 600;
+    font-size: 0.8rem;
+    transition: 300ms var(--cubic-ease-out);
+}
+
+.hidden .select-song .authors {
+    font-size: 0;
+    transition: 300ms var(--cubic-ease-out) 100ms;
+}
+
+/* Screen 3: Lines selection */
+.lines-selection {
+    padding-top: 1.5rem;
+    width: 80%;
+    max-width: 30rem;
+}
+
+.select-line {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--surface-light-color);
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    width: 100%;
+    margin: 0 auto 1rem;
+    transition: padding 400ms var(--cubic-ease-out),
+        margin-bottom 400ms var(--cubic-ease-out),
+        font-size 400ms var(--cubic-ease-out),
+        width 400ms var(--cubic-ease-out),
+        background-color 200ms var(--cubic-ease-out),
+        scale 200ms var(--cubic-ease-out);
+}
+
+.select-line:hover {
+    cursor: pointer;
+    background-color: var(--surface-color);
+    scale: 1.05;
+}
+
+.hidden .select-line,
+.select-line.hidden {
+    padding: 0;
+    margin-bottom: 0;
+    font-size: 0;
+    width: 0;
+}
+
+.select-line.selected {
+    background-color: var(--primary-color);
+    color: var(--primary-text-color);
+}
+
+/* Screen 4: Final options and download */
+.final-options header {
+    margin-bottom: 1rem;
+}
+
+.final-options .searching {
+    margin-bottom: 2rem;
+}
+
+.final-options .searching.hidden {
+    margin-bottom: 0;
+}
+
+.color-selection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 0.8rem;
+    max-width: 15rem;
+    width: 80%;
+    padding: 2rem 1rem;
+    transition: 200ms var(--cubic-ease-out);
+}
+
+.hidden .color-selection {
+    padding: 0 1rem;
+}
+
+.color-selection > div {
+    width: 21%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    color: transparent;
+    transition: 150ms var(--cubic-ease-out);
+}
+
+.color-selection > div:hover {
+    cursor: pointer;
+    scale: 1.1;
+}
+
+.hidden .color-selection > div {
+    width: 0;
+}
+
+#custom-color {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--background-text-color);
+    border: 1px solid var(--background-text-color);
+}
+
+#custom-color > input {
+    height: 0;
+    width: 0;
+    padding: 0;
+    border: none;
+}
+
+#custom-color > label:hover {
+    cursor: pointer;
+}
+
+.switch-container {
+    display: flex;
+    align-items: center;
+    max-width: 15rem;
+    width: 80%;
+    padding: 0rem 1rem 1rem;
+    transition: 200ms var(--cubic-ease-out);
+}
+
+.switch-container:hover {
+    cursor: pointer;
+}
+
+.hidden .switch-container {
+    font-size: 0;
+    padding: 0;
+}
+
+.switch {
+    position: relative;
+    width: 4rem;
+    height: 2rem;
+    border-radius: 1rem;
+    border: 1px solid var(--background-text-color);
+    margin-right: 1rem;
+    transition: 200ms var(--cubic-ease-out);
+}
+
+.hidden .switch {
+    height: 0;
+}
+
+.switch::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0.25rem;
+    transform: translate(0, -50%);
+    height: 1.5rem;
+    aspect-ratio: 1;
+    background-color: var(--background-text-color);
+    border-radius: 50%;
+    transition: 200ms var(--cubic-ease-out);
+}
+
+.light-text #light-text .switch::after {
+    left: calc(100% - 1.75rem);
+}
+
+.spotify-tag #spotify-tag .switch::after {
+    left: calc(100% - 1.75rem);
+}
+
+.additional-bg #additional-bg .switch::after {
+    left: calc(100% - 1.75rem);
+}
+
+@media screen and (max-width: 450px) {
+    .select-song {
+        width: 45%;
+    }
+
+    .search-form form > input {
+        width: 90%;
+    }
+    .lines-selection {
+        width: 95%;
+    }
+    .search-results .song-selection {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+    }
+    .select-song {
+        width: 95%;
+    }
+    .color-selection {
+        width: 95%;
+    }
+}
