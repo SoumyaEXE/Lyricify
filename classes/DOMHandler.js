@@ -198,11 +198,6 @@ class DOMHandler {
             });
         });
 
-        this.toggleDarkMode.addEventListener("click", () => {
-            this.setTheme(
-                document.body.classList.contains("dark-mode") ? "light" : "dark"
-            );
-        });
     }
 
     /**
