@@ -1,5 +1,5 @@
 const SONGS_TO_FETCH = 10;
-const DOWNLOAD_SCALING_FACTOR = 8; // Increased for 4K quality downloads
+const DOWNLOAD_SCALING_FACTOR = 4; // Increased for 4K quality downloads
 const SELECTION_ANIMATION_DELAY = 300;
 const NEXT_LINE_ANIMATION_DELAY = 30;
 const SEARCHING_FOR_SONG = "Searching for your song...";
