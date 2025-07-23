@@ -4,7 +4,7 @@ const SELECTION_ANIMATION_DELAY = 300;
 const NEXT_LINE_ANIMATION_DELAY = 30;
 const SEARCHING_FOR_SONG = "Searching for your song...";
 const SEARCHING_FOR_LYRICS = "Searching for song's lyrics...";
-const DOWNLOADING = "Wait! Downloading 4K lyrics image...";
+const DOWNLOADING = "Wait 5 Sec! Downloading 4K lyrics image...";
 const NO_LYRICS_FOUND =
     "No lyrics found<br>You can still type your own lyrics by clicking here :)";
 const NO_LYRICS_SELECTED =
