@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "https://www.lyricifyy.vercel.app/:path*",
+      "destination": "https://lyricifyy.vercel.app/:path*",
+      "permanent": true
+    }
+  ]
+}
