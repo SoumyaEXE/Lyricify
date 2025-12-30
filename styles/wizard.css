@@ -1268,7 +1268,7 @@ body:not(.dark-mode) .search-form form > input:focus {
     
     .control-group label {
         min-width: 120px;
-        max-width: 150px; /* Increased max-width to prevent text overflow */
+        max-width: 150px;
         font-size: 0.9rem;
         text-align: left;
         white-space: nowrap;
