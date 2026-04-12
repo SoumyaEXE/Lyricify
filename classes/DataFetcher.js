@@ -14,8 +14,8 @@ class DataFetcher {
          * but I wanted to make it really cost-free (front-end only),
          * and I decided I didn't care about those keys
          */
-        params.append("client_id", "4d6b7066ac2443cf82a29b79e9920e88");
-        params.append("client_secret", "cddfc0b1c87e4131ae0f3622bdc5b731");
+        params.append("client_id", "bc677594d6d746989c5066c59de2314b");
+        params.append("client_secret", "1f4f3d4fa360485bba4280807fbf9b27");
 
         const response = await fetch("https://accounts.spotify.com/api/token", {
             method: "POST",
